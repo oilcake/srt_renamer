@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import logging
 import os
 import re
@@ -11,6 +13,10 @@ class NoMatch(Exception):
 
 
 class NotAnEpisode(Exception):
+    pass
+
+
+class MissingArguments(Exception):
     pass
 
 
@@ -50,4 +56,9 @@ def rename(episodes_path, subtitles_path: str) -> None:
 
 
 if __name__ == "__main__":
-    rename(sys.argv[1], sys.argv[2])
+    try:
+        episodes = sys.argv[1]
+        subs = sys.argv[2]
+    except IndexError:
+        sys.exit("Please provide both season's and subtitles' locations")
+    rename(episodes, subs)
