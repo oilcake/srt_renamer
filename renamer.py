@@ -29,7 +29,7 @@ def find_matching_subs(episode_name, subs_path: str) -> str:
     """looks in a given path for a match of
     standard tv show enumeration mark like 'S02E12'
     and returns corresponding subtitiles file"""
-    ep_mark = re.match(r".*(S\d{2}E\d{2})", episode_name, re.IGNORECASE)
+    ep_mark = re.match(r".*(\d{2}.\d{2})", episode_name, re.IGNORECASE)
     if not ep_mark:
         raise NotAnEpisode(f"No episode pattern found for {episode_name}")
     ep_mark = ep_mark.group(1)
