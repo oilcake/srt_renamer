@@ -31,7 +31,7 @@ def find_matching_subs(episode_name, subs_path: str) -> str:
     and returns corresponding subtitiles file"""
     ep_mark = re.match(r".*(S\d{2}E\d{2})", episode_name, re.IGNORECASE)
     if not ep_mark:
-        raise NotAnEpisode("No episode pattern found")
+        raise NotAnEpisode(f"No episode pattern found for {episode_name}")
     ep_mark = ep_mark.group(1)
     for subs in os.listdir(subs_path):
         if ep_mark.lower() in subs.lower():
@@ -49,10 +49,10 @@ def rename(episodes_path, subtitles_path: str) -> None:
                 subtitles_path, find_matching_subs(episode, subtitles_path)
             )
             sub_new_name = construct_subs_name(episode)
-            logging.info(f"{sub_name} renamed to {sub_new_name}")
+            logging.info(f"{sub_name}\nrenamed to\n{sub_new_name}")
             os.rename(sub_name, sub_new_name)
         except (NotAnEpisode, NoMatch) as e:
-            logging.warning(f"something is wrong, {e.args[0]} for {episode}")
+            logging.warning(f"something is wrong:\n{e.args[0]}")
 
 
 if __name__ == "__main__":
