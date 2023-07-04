@@ -57,8 +57,8 @@ def rename(episodes_path, subtitles_path: str) -> None:
 
 if __name__ == "__main__":
     try:
-        episodes = sys.argv[1]
-        subs = sys.argv[2]
+        EPISODES = sys.argv[1]
+        SUBS = sys.argv[2]
     except IndexError:
         sys.exit("Please provide both season's and subtitles' locations")
-    rename(episodes, subs)
+    rename(EPISODES, SUBS)
